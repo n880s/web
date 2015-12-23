@@ -1,0 +1,157 @@
+1.选择元素
+
+    // 返回ID为'test'的节点：
+    var test = document.getElementById('test');
+
+    // 先定位ID为'test-table'的节点，再返回其内部所有tr节点：
+    var trs = document.getElementById('test-table').getElementsByTagName('tr');
+
+    // 先定位ID为'test-div'的节点，再返回其内部所有class包含red的节点：
+    var reds = document.getElementById('test-div').getElementsByClassName('red');
+
+    // 获取节点test下的所有直属子节点:
+    var cs = test.children;
+
+    // 获取节点test下第一个、最后一个子节点：
+    var first = test.firstElementChild;
+    var last = test.lastElementChild;
+
+
+    <!-- HTML结构 -->
+    <div id="test-div">
+    <div class="c-red">
+        <p id="test-p">JavaScript</p>
+        <p>Java</p>
+      </div>
+      <div class="c-red c-green">
+        <p>Python</p>
+        <p>Ruby</p>
+        <p>Swift</p>
+      </div>
+      <div class="c-green">
+        <p>Scheme</p>
+        <p>Haskell</p>
+      </div>
+    </div>
+
+    'use strict'
+    // 选择<p>JavaScript</p>:
+    var js = document.getElementById('test-p');
+
+    // 选择<p>Python</p>,<p>Ruby</p>,<p>Swift</p>:
+    var arr = document.getElementsByClassName('c-red c-green')[0].children;
+
+    // 选择<p>Haskell</p>:
+    var haskell = document.getElementsByClassName('c-green')[1].lastElementChild;
+
+2.修改元素
+    // 获取<p>javascript</p>节点:
+    var js = document.getElementById('test-js');
+
+    // 修改文本为JavaScript:
+    // TODO:
+    //js.innerHTML = 'JavaScript';
+    js.innerText = 'JavaScript';
+
+    // 修改CSS为: color: #ff0000, font-weight: bold
+    // TODO:
+    js.style.color = '#ff0000';
+    js.style.fontWeight = 'bold';
+
+  3.插入节点
+    appendChild  把一个子节点添加到父节点最后一个子节点
+    var test_p = ducument.createElement('p'); //创建一个新节点
+
+    parentElement.insertBefore(newElement,  referenceElement); //将一个节点插入到指定节点之前
+
+    // sort list:
+    var list = document.getElementById('test-list');
+    var c=[];
+    console.log(list.children);
+    for(let i=0;i<list.children.length;i++){
+        c.push(list.children[i].innerText);
+        console.log(list.children[i].innerText);
+    }
+    c.sort();
+    for(let j=0;j<c.length;j++){
+        list.children[j].innerHTML = c[j];
+        console.log(list.children[j].innerHTML);
+    }
+
+4.删除节点
+  child = parent.removeChild(child); //删除指定子节点 返回子节点
+
+5.修改表单
+    //更改提交表单操作
+    重写 function checkForm(){
+        return true;
+    }
+
+    //  使用hidden 表单元素实现提交md5口令
+    <!-- HTML -->
+    <form id="login-form" method="post" onsubmit="return checkForm()">
+        <input type="text" id="username" name="username">
+        <input type="password" id="input-password">     // 没有name属性的表单项不会被提交 提交时取出此项值计算md5后填入隐藏表单
+        <input type="hidden" id="md5-password" name="password">
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+    function checkForm() {
+        var input_pwd = document.getElementById('input-password');
+        var md5_pwd = document.getElementById('md5-password');
+        // 把用户输入的明文变为MD5:
+        md5_pwd.value = toMD5(input_pwd.value);
+        // 继续下一步:
+        return true;
+    }
+    </script>
+
+  6.验证表单
+          var reg_user = /^[\d\w]{3,10}$/,
+              reg_pass = /^[\d\w]{6,20}$/,
+              username = document.getElementById('username'),
+              pass     = document.getElementById('password'),
+              pass_conf= document.getElementById('password-2');
+              console.log(username.value + password.value);
+          if(reg_user.test(username.value) && reg_pass.test(pass.value) && pass.value == pass_conf.value) {
+              return true;
+          }
+          return false;
+
+二 、jquery
+    1. 选择器
+        var a = $('p'); //tag查找
+        var a = $('.red'); //按class查找
+        var a = $('[name=email]'); //按属性查找
+        var a = $('name^=icon');   //icon 开头属性
+
+        var a = $('tr.red'); //组合查找
+
+        var a = $('p.red, p.green'); //多项选择器
+
+        var a = $('ul.lang li.lang-javascript');//层级选择器 空格隔开
+
+        var a = $('ul.lang>li.lang-javascript'); //子选择器 只选出直接子元素
+
+        //过滤器 
+        $('ul.lang li:first-child'); // 仅选出JavaScript
+        $('ul.lang li:last-child'); // 仅选出Lua
+        $('ul.lang li:nth-child(2)'); // 选出第N个元素，N从1开始
+        $('ul.lang li:nth-child(even)'); // 选出序号为偶数的元素
+        $('ul.lang li:nth-child(odd)'); // 选出序号为奇数的元素
+
+        //表单相关
+        
+
+
+
+
+
+
+
+
+
+
+
+
