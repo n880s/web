@@ -26,3 +26,8 @@ hexo ERROR Deployer not found: github
 要使用gitbash运行命令 否则会出现
 
 用户名不要大写 
+
+
+ERROR Local hexo not found in E:\blog
+ERROR Try running: 'npm install hexo --save'
+    执行npm init
